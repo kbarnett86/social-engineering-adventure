@@ -124,20 +124,42 @@ const questions = [
   }
   
   // Function to check whether the selected answer is correct
-  function checkAnswer(selected) {
-    const q = questions[current];
-    const feedback = document.getElementById("quiz-feedback");
-  
-    if (selected === q.correct) {
-      feedback.innerHTML = "✅ <strong>Correct!</strong>";
-      score++;
-    } else {
-      feedback.innerHTML = "❌ <strong>Not quite.</strong> Always verify through proper channels.";
-    }
+ 
   
     // Reveal the "Next" button after selection
     document.getElementById("next-btn").style.display = "inline-block";
-  }
+    function checkAnswer(selected) {
+        const q = questions[current];
+        const feedback = document.getElementById("quiz-feedback");
+        const imgContainer = document.getElementById("quiz-image");
+        let imageFile = "";
+      
+        // Evaluate answer
+        if (selected === q.correct) {
+          feedback.innerHTML = "✅ <strong>Correct!</strong>";
+          score++;
+      
+          // Choose a 'correct' image based on question
+          imageFile = `quiz-q${current + 1}-victory.png`;
+        } else {
+          feedback.innerHTML = "❌ <strong>Not quite.</strong> Always verify through proper channels.";
+      
+          // Choose an 'incorrect' image based on question
+          imageFile = `quiz-q${current + 1}-fail.png`;  // fallback if you ever add fail images
+        }
+      
+        // Handle fallback if no image exists for question
+        if (current === 0) imageFile = "quiz-q1-wap.png";
+        if (current === 1) imageFile = "quiz-q2-official.png";
+        if (current === 2) imageFile = "quiz-q3-verification.png";
+        if (current === 3) imageFile = "quiz-q4-victory.png";
+      
+        // Add image dynamically
+        imgContainer.innerHTML = `<img src="assets/images/${imageFile}" alt="Quiz Comic Panel" class="quiz-panel">`;
+      
+        document.getElementById("next-btn").style.display = "inline-block";
+      }
+      
   
   // Function to go to the next question or show results
   function nextQuestion() {

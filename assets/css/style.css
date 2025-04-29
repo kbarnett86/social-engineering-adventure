@@ -116,3 +116,15 @@ img {
   background-color: #f6c6c6;
   color: #6b0c0c;
 }
+
+.quiz-image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.quiz-image-container img.quiz-panel {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
