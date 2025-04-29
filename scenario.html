@@ -21,6 +21,57 @@
     </div>
 
     <div id="feedback" class="feedback"></div>
+    <!-- Step 2 Scenario Block - Hidden by Default -->
+<section id="step2" style="display: none; margin-top: 2em;">
+  <p>
+    Alex responds:<br>
+    <strong>
+      "Sure, totally understand. You can call me back at extension 314. I’m working with Susan in HR—
+      she asked me to fix this ASAP. The malware could spread if we don’t act fast."
+    </strong>
+  </p>
+
+  <div class="button-group">
+    <button onclick="chooseStep2('A')">A. Trust him and grant access</button>
+    <button onclick="chooseStep2('B')">B. Say you’ll call IT directly through official channels</button>
+    <button onclick="chooseStep2('C')">C. Ask for his employee ID and IT ticket number</button>
+  </div>
+
+  <div id="step2-feedback" class="feedback"></div>
+</section>
+
+<!-- Step 3 -->
+<section id="step3" style="display: none; margin-top: 2em;">
+  <p><strong>“Alex” calls again:</strong><br>
+  “I never got a call back. This could lock your whole department out. Just approve the request in your inbox and I’ll take care of it.”</p>
+
+  <div class="button-group">
+    <button onclick="chooseStep3('A')">A. Approve the request to prevent downtime</button>
+    <button onclick="chooseStep3('B')">B. Tell him you're waiting for verification and end the call</button>
+    <button onclick="chooseStep3('C')">C. Report the call to your security team</button>
+  </div>
+
+  <div id="step3-feedback" class="feedback"></div>
+</section>
+
+
+<!-- Step 4 -->
+<section id="step4" style="display: none; margin-top: 2em;">
+  <p><strong>You receive an email from your manager:</strong><br>
+  “I’m tied up in meetings. Please respond to the IT request from earlier and give them what they need. –Sarah”</p>
+
+  <div class="button-group">
+    <button onclick="chooseStep4('A')">A. Reply and ask if it’s really them</button>
+    <button onclick="chooseStep4('B')">B. Click message headers to view technical details</button>
+    <button onclick="chooseStep4('C')">C. Assume it’s real and follow instructions</button>
+  </div>
+
+  <div id="step4-feedback" class="feedback"></div>
+  <button class="button" onclick="location.href='quiz.html'">Take the Quiz</button>
+
+</section>
+
+
   </main>
 
   <script src="assets/js/script.js"></script>
