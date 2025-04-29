@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Social Engineering Adventure</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .comic-panel {
+      background: #fff;
+      border: 5px solid black;
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 800px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .comic-panel img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .comic-caption {
+      font-size: 1.4rem;
+      color: #222;
+      margin-top: 1rem;
+    }
+
+    .start-button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .start-button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <main>
+
+  <main class="comic-panel">
     <h1>Can You Trust the Friendly Voice?</h1>
-    <p>
-      Test your instincts and learn how to spot a voice-based social engineering (vishing) attack.
-      This interactive adventure will guide you through real-world choices and show you how to stay safe.
-    </p>
-    <a href="scenario.html" class="button">Start the Adventure</a>
+    <p>Test your instincts and learn how to spot a voice-based social engineering (vishing) attack.</p>
+    
+    <!-- 🎯 Comic Superhero Panel -->
+    <img src="assets/images/hero-vs-alex.png" alt="Cybersecurity superhero vs hacker villain" />
+    <div class="comic-caption">"Nice try but trust needs verification!!"</div>
+
+    <a href="scenario.html"><button class="start-button">Start the Adventure</button></a>
   </main>
+
 </body>
 </html>
