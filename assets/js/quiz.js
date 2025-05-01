@@ -1,187 +1,191 @@
-// -------------------------------------------
-// Social Engineering Awareness Quiz Script
-// -------------------------------------------
+// quiz.js
 
-// Array of quiz questions
-// Each object includes: question text, answer options, and the correct answer index
+// ===========================
+// Cybersecurity Quiz Logic
+// ===========================
+
 const questions = [
-    {
-      question: "What should you do if someone calls claiming to be IT and asks for access?",
-      options: [
-        "Give access immediately to avoid delays",
-        "Verify their identity through official channels",
-        "Ignore the call completely"
-      ],
-      correct: 1
-    },
-    {
-      question: "You receive an urgent email from your manager asking you to share access. What should you do?",
-      options: [
-        "Click and respond immediately",
-        "Call your manager or IT to confirm",
-        "Forward it to your coworkers"
-      ],
-      correct: 1
-    },
-    {
-      question: "Why is asking for an employee ID or IT ticket number helpful?",
-      options: [
-        "It gives attackers more info",
-        "It proves you're suspicious",
-        "It can help verify legitimacy"
-      ],
-      correct: 2
-    },
-    {
-      question: "You receive a call about a payroll issue. They ask for your employee ID. What should you do?",
-      options: [
-        "Provide your ID to help resolve the issue",
-        "Ask for their extension and call HR to verify",
-        "Ask for a callback in an hour"
-      ],
-      correct: 1
-    },
-    {
-      question: "What's a common sign of a phishing email?",
-      options: [
-        "It comes from a coworker",
-        "It asks you to update credentials urgently",
-        "It's formatted perfectly and has no typos"
-      ],
-      correct: 1
-    },
-    {
-      question: "A caller says they're with your IT provider and want to run diagnostics. You weren't expecting this. What's the best next step?",
-      options: [
-        "Give them temporary access",
-        "Ask who their supervisor is",
-        "Hang up and report the call to your IT/security team"
-      ],
-      correct: 2
-    },
-    {
-      question: "Why do attackers often use urgent or emotional language?",
-      options: [
-        "To make the message more entertaining",
-        "To bypass your logical thinking and get quick compliance",
-        "To educate you about cybersecurity"
-      ],
-      correct: 1
-    },
-    {
-      question: "You get a text that says your password expired. There’s a link to reset it. What should you do?",
-      options: [
-        "Click the link before time runs out",
-        "Call your IT department to verify the message",
-        "Forward the text to coworkers to warn them"
-      ],
-      correct: 1
-    },
-    {
-      question: "What should you do if you suspect a coworker has been targeted by a scam?",
-      options: [
-        "Let them figure it out",
-        "Notify IT/security and offer to help",
-        "Post about it on your personal social media"
-      ],
-      correct: 1
-    },
-    {
-      question: "Why is it important to verify instructions sent via email or phone?",
-      options: [
-        "To show you're detail-oriented",
-        "Because messages can be spoofed",
-        "So your boss doesn’t get mad"
-      ],
-      correct: 1
-    }
-  ];
-  
-  // Track the current question index and score
-  let current = 0;
-  let score = 0;
-  
-  // Function to display the current question and answer buttons
-  function showQuestion() {
-    const q = questions[current];
-    document.getElementById("question").innerText = q.question;
-  
-    const answersDiv = document.getElementById("answers");
-    answersDiv.innerHTML = ""; // Clear old answers
-  
-    // Create a button for each answer option
-    q.options.forEach((option, i) => {
-      const btn = document.createElement("button");
-      btn.innerText = option;
-      btn.classList.add("button");
-      btn.onclick = () => checkAnswer(i); // Check answer when clicked
-      answersDiv.appendChild(btn);
-    });
-  
-    // Clear feedback and hide "Next" button
-    document.getElementById("quiz-feedback").innerHTML = "";
-    document.getElementById("next-btn").style.display = "none";
+  // === Level 1: Basic Cybersecurity Vishing Awareness ===
+  {
+    question: "You receive a call from someone claiming to be IT support, asking for remote access. What should you do?",
+    options: [
+      "Give access to avoid delays",
+      "Verify through official company channels before acting",
+      "Tell them to call back later"
+    ],
+    correct: 1
+  },
+  {
+    question: "A caller urgently requests employee records, claiming there’s a system outage. What’s the best response?",
+    options: [
+      "Share the records immediately",
+      "Confirm the request with your manager or IT",
+      "Ignore the caller"
+    ],
+    correct: 1
+  },
+  {
+    question: "Why is it important to ask for a callback number and verify it before responding to a request?",
+    options: [
+      "To stall the attacker",
+      "To appear compliant",
+      "To independently verify the caller’s legitimacy"
+    ],
+    correct: 2
+  },
+  {
+    question: "What’s a common sign that a voice-based scam (vishing) may be occurring?",
+    options: [
+      "The caller uses urgent or emotional language",
+      "The caller knows your name",
+      "The caller is polite"
+    ],
+    correct: 0
+  },
+
+  // === Level 2: Advanced Cybersecurity Best Practices ===
+  {
+    question: "A vendor calls with a last-minute change to payment account details. What should you do?",
+    options: [
+      "Update the info and process the payment",
+      "Ask for written confirmation only",
+      "Verify with the vendor and finance through known contacts"
+    ],
+    correct: 2
+  },
+  {
+    question: "Your colleague gets a voicemail asking them to call back and confirm access credentials. What’s your advice?",
+    options: [
+      "Call the number just to check",
+      "Report it to security and do not respond",
+      "Text them to ask if it’s really them"
+    ],
+    correct: 1
+  },
+  {
+    question: "Why is call spoofing dangerous in vishing attempts?",
+    options: [
+      "It lets attackers avoid detection",
+      "It makes fake calls appear from legitimate numbers",
+      "It slows down response times"
+    ],
+    correct: 1
+  },
+  {
+    question: "Which control can reduce the risk of successful vishing?",
+    options: [
+      "Multi-factor authentication (MFA)",
+      "Using more phone lines",
+      "Weekly password changes"
+    ],
+    correct: 0
   }
-  
-  // Function to check whether the selected answer is correct
- 
-  
-    // Reveal the "Next" button after selection
-    document.getElementById("next-btn").style.display = "inline-block";
-    function checkAnswer(selected) {
-        const q = questions[current];
-        const feedback = document.getElementById("quiz-feedback");
-        const imgContainer = document.getElementById("quiz-image");
-        let imageFile = "";
-      
-        // Evaluate answer
-        if (selected === q.correct) {
-          feedback.innerHTML = "✅ <strong>Correct!</strong>";
-          score++;
-      
-          // Choose a 'correct' image based on question
-          imageFile = `quiz-q${current + 1}-victory.png`;
-        } else {
-          feedback.innerHTML = "❌ <strong>Not quite.</strong> Always verify through proper channels.";
-      
-          // Choose an 'incorrect' image based on question
-          imageFile = `quiz-q${current + 1}-fail.png`;  // fallback if you ever add fail images
-        }
-      
-        // Handle fallback if no image exists for question
-        if (current === 0) imageFile = "quiz-q1-wap.png";
-        if (current === 1) imageFile = "quiz-q2-official.png";
-        if (current === 2) imageFile = "quiz-q3-verification.png";
-        if (current === 3) imageFile = "quiz-q4-victory.png";
-      
-        // Add image dynamically
-        imgContainer.innerHTML = `<img src="assets/images/${imageFile}" alt="Quiz Comic Panel" class="quiz-panel">`;
-      
-        document.getElementById("next-btn").style.display = "inline-block";
-      }
-      
-  
-  // Function to go to the next question or show results
-  function nextQuestion() {
+];
+
+let current = 0;
+let score = 0;
+
+function showQuestion() {
+  const q = questions[current];
+  document.getElementById("question").innerText = q.question;
+
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+  q.options.forEach((option, i) => {
+    const btn = document.createElement("button");
+    btn.innerText = option;
+    btn.classList.add("button");
+    btn.onclick = () => checkAnswer(i);
+    btn.disabled = false;
+    answersDiv.appendChild(btn);
+  });
+
+  document.getElementById("quiz-feedback").innerHTML = "";
+
+  let imagePath = "";
+  if (current === 0) {
+    imagePath = "assets/images/intro-split-alex.png";
+  } else if (current >= 1 && current <= 4) {
+    imagePath = "assets/images/level1-hero-vs-alex.png";
+  } else if (current >= 5 && current < 8) {
+    imagePath = "assets/images/level2-hero-vs-alex.png";
+  }
+
+  const imgEl = document.getElementById("quiz-image");
+  if (imagePath) {
+    imgEl.src = imagePath;
+    imgEl.alt = "Quiz Comic Panel";
+    imgEl.style.display = "block";
+  } else {
+    imgEl.style.display = "none";
+  }
+}
+
+function checkAnswer(selected) {
+  const q = questions[current];
+  const feedback = document.getElementById("quiz-feedback");
+  const buttons = document.querySelectorAll("#answers .button");
+
+  // Disable all buttons after a choice
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (selected === q.correct) {
+    feedback.innerHTML = "✅ <strong>Correct!</strong>";
+    score++;
+  } else {
+    feedback.innerHTML = "❌ <strong>Not quite.</strong> Always verify through proper channels.";
+  }
+
+  setTimeout(() => {
     current++;
-    if (current < questions.length) {
+    if (current === 4 && score < 4) {
+      showLevel1Fail();
+    } else if (current < questions.length) {
       showQuestion();
     } else {
       showResults();
     }
-  }
-  
-  // Function to show the final quiz result
-  function showResults() {
-    document.getElementById("quiz-container").style.display = "none";
-    document.getElementById("quiz-result").style.display = "block";
-    document.getElementById("quiz-result").innerHTML = `
-      <h2>Quiz Complete!</h2>
-      <p>You scored ${score} out of ${questions.length}.</p>
-      <p>${score >= 8 ? "🎉 Great job! You’ve got sharp instincts!" : "🧐 Keep practicing and stay alert!"}</p>
+  }, 1500);
+}
+
+function showLevel1Fail() {
+  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("quiz-result").style.display = "block";
+  document.getElementById("quiz-result").innerHTML = `
+    <h2>Try Again!</h2>
+    <p>You must get all Level 1 questions correct to move forward.</p>
+    <img src="assets/images/level1-fail-hero-fumble.png" alt="Fail Comic Panel" class="quiz-panel" />
+    <button onclick="restartQuiz()" class="button">Retry Level 1</button>
+  `;
+}
+
+function showResults() {
+  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("quiz-result").style.display = "block";
+  const passed = score === questions.length;
+
+  document.getElementById("quiz-result").innerHTML = passed
+    ? `
+      <h2>Victory!</h2>
+      <p>You passed both levels with a perfect score!</p>
+      <img src="assets/images/quiz-victory-hero.png" alt="Victory Panel" class="quiz-panel" />
+      <button onclick="restartQuiz()" class="button">Play Again</button>
+    `
+    : `
+      <h2>Level 2 Failed</h2>
+      <p>You didn’t get all questions correct. Try again to beat Alex!</p>
+      <img src="assets/images/level2-fail-hero-fumble.png" alt="Fail Panel" class="quiz-panel" />
+      <button onclick="restartQuiz()" class="button">Retry</button>
     `;
-  }
-  
-  // Start the quiz
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  document.getElementById("quiz-result").style.display = "none";
+  document.getElementById("quiz-container").style.display = "block";
   showQuestion();
-  
+}
+
+// Start the quiz on load
+window.onload = showQuestion;
