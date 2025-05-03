@@ -105,19 +105,52 @@ function showQuestion() {
   let imagePath = "";
   if (current === 0) {
     imagePath = "assets/images/intro-split-alex.png";
+    removeLevelBadge();
   } else if (current >= 1 && current <= 4) {
     imagePath = "assets/images/level1-hero-vs-alex.png";
+    document.getElementById("quiz-container").style.border = "4px solid black";
+    removeLevelBadge();
   } else if (current >= 5 && current < 8) {
     imagePath = "assets/images/level2-hero-vs-alex.png";
+    document.getElementById("quiz-container").style.border = "4px solid red";
+    showLevelBadge();
   }
 
   const imgEl = document.getElementById("quiz-image");
-  if (imagePath) {
+  if (imgEl && imagePath) {
     imgEl.src = imagePath;
     imgEl.alt = "Quiz Comic Panel";
     imgEl.style.display = "block";
-  } else {
+  } else if (imgEl) {
     imgEl.style.display = "none";
+  }
+}
+
+function showLevelBadge() {
+  let badge = document.getElementById("level-badge");
+  if (!badge) {
+    badge = document.createElement("div");
+    badge.id = "level-badge";
+    badge.innerText = "Level 2";
+    badge.style.position = "absolute";
+    badge.style.top = "20px";
+    badge.style.left = "20px";
+    badge.style.padding = "0.5rem 1rem";
+    badge.style.backgroundColor = "#ff0000";
+    badge.style.color = "white";
+    badge.style.fontWeight = "bold";
+    badge.style.border = "3px solid black";
+    badge.style.borderRadius = "12px";
+    badge.style.zIndex = "10";
+    document.querySelector(".quiz-image-container").style.position = "relative";
+    document.querySelector(".quiz-image-container").appendChild(badge);
+  }
+}
+
+function removeLevelBadge() {
+  const badge = document.getElementById("level-badge");
+  if (badge) {
+    badge.remove();
   }
 }
 
@@ -126,7 +159,6 @@ function checkAnswer(selected) {
   const feedback = document.getElementById("quiz-feedback");
   const buttons = document.querySelectorAll("#answers .button");
 
-  // Disable all buttons after a choice
   buttons.forEach(btn => btn.disabled = true);
 
   if (selected === q.correct) {
@@ -150,42 +182,44 @@ function checkAnswer(selected) {
 
 function showLevel1Fail() {
   document.getElementById("quiz-container").style.display = "none";
-  document.getElementById("quiz-result").style.display = "block";
-  document.getElementById("quiz-result").innerHTML = `
-    <h2>Try Again!</h2>
-    <p>You must get all Level 1 questions correct to move forward.</p>
-    <img src="assets/images/level1-fail-hero-fumble.png" alt="Fail Comic Panel" class="quiz-panel" />
-    <button onclick="restartQuiz()" class="button">Retry Level 1</button>
-  `;
+  document.getElementById("quiz-result").style.display = "flex";
+  document.getElementById("result-title").innerText = "Try Again!";
+  document.getElementById("result-message").innerText = "You must get all Level 1 questions correct to move forward.";
+  document.getElementById("result-image").src = "assets/images/level1-fail-hero-fumble.png";
+  document.getElementById("result-image").alt = "Fail Comic Panel";
+  document.getElementById("retry-button").innerText = "Retry Level 1";
+  removeLevelBadge();
 }
 
 function showResults() {
   document.getElementById("quiz-container").style.display = "none";
-  document.getElementById("quiz-result").style.display = "block";
+  document.getElementById("quiz-result").style.display = "flex";
   const passed = score === questions.length;
 
-  document.getElementById("quiz-result").innerHTML = passed
-    ? `
-      <h2>Victory!</h2>
-      <p>You passed both levels with a perfect score!</p>
-      <img src="assets/images/quiz-victory-hero.png" alt="Victory Panel" class="quiz-panel" />
-      <button onclick="restartQuiz()" class="button">Play Again</button>
-    `
-    : `
-      <h2>Level 2 Failed</h2>
-      <p>You didn’t get all questions correct. Try again to beat Alex!</p>
-      <img src="assets/images/level2-fail-hero-fumble.png" alt="Fail Panel" class="quiz-panel" />
-      <button onclick="restartQuiz()" class="button">Retry</button>
-    `;
+  document.getElementById("result-title").innerText = passed ? "Victory!" : "Level 2 Failed";
+  document.getElementById("result-message").innerText = passed ?
+    "You passed both levels with a perfect score!" :
+    "You didn’t get all questions correct. Try again to beat Alex!";
+  document.getElementById("result-image").src = passed ?
+    "assets/images/quiz-victory-hero.png" :
+    "assets/images/level2-fail-hero-fumble.png";
+  document.getElementById("result-image").alt = passed ? "Victory Panel" : "Fail Panel";
+  document.getElementById("retry-button").innerText = "Play Again";
+  removeLevelBadge();
 }
 
 function restartQuiz() {
   current = 0;
   score = 0;
   document.getElementById("quiz-result").style.display = "none";
-  document.getElementById("quiz-container").style.display = "block";
+  document.getElementById("quiz-container").style.display = "flex";
+
+  document.getElementById("quiz-container").classList.add("quiz-layout");
+  document.getElementById("quiz-result").classList.add("quiz-layout");
+  document.getElementById("quiz-container").style.border = "4px solid black";
+  removeLevelBadge();
+
   showQuestion();
 }
 
-// Start the quiz on load
 window.onload = showQuestion;
