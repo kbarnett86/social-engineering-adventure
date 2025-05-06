@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cybersecurity Training: Vishing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="lesson-container" class="quiz-wrapper">
+    <div id="lesson-screen" class="quiz-content">
+      <h1>Think Before You Trust: The Cybersecurity Challenge</h1>
+      <p id="lesson-text"></p>
+      <button class="button" onclick="nextLesson()">Next</button>
+    </div>
+  </main>
+
+  <script>
+    const lessonScreens = [
+      `**What Is Vishing?**<br><br>Vishing, or voice phishing, is a type of social engineering attack where scammers use phone calls to trick you into giving up confidential information or taking harmful actions.`,
+      `**Why Should You Care?**<br><br>Vishing scams can lead to data breaches, financial fraud, and identity theft. They often sound convincing and target everyday employees — not just tech experts.`,
+      `**How to Protect Yourself**<br><br>
+      • Never give sensitive info over the phone without verifying the caller.<br>
+      • Always confirm requests with a known contact.<br>
+      • Be cautious of urgent or emotional language used to pressure you.`,
+      `**Example Scenario**<br><br>
+      A caller claims to be from IT and urgently needs your password to fix a network issue. They say if you don't cooperate, your account will be locked. You feel rushed — but this is a trap. Always verify their identity using official contacts before acting.`,
+      `**Ready to Begin the Challenge?**<br><br>
+      You’ve reviewed the basics. Click below to test your awareness in a fast-paced comic-themed quiz!`
+    ];
+
+    let currentScreen = 0;
+
+    function nextLesson() {
+      const text = document.getElementById("lesson-text");
+      const btn = document.querySelector("button");
+
+      if (currentScreen < lessonScreens.length - 1) {
+        text.innerHTML = lessonScreens[currentScreen];
+        currentScreen++;
+      } else {
+        window.location.href = "quiz.html";
+      }
+    }
+
+    // Show the first screen
+    window.onload = () => {
+      document.getElementById("lesson-text").innerHTML = lessonScreens[0];
+      currentScreen++;
+    };
+  </script>
+</body>
+</html>

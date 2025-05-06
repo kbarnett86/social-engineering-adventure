@@ -230,3 +230,81 @@ img {
     max-width: 1100px;
   }
 }
+
+/* === Training Slides CSS Enhancements === */
+
+
+#training-slide {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+#training-slide .quiz-image-container {
+  flex: 1 1 50%;
+  max-width: 600px;
+}
+
+#training-slide .quiz-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid black;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#training-slide .quiz-content {
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+#training-slide .quiz-content h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+#training-slide .quiz-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+#training-slide .button {
+  align-self: flex-start;
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px black;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#training-slide .button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  #training-slide {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #training-slide .quiz-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  #training-slide .button {
+    align-self: center;
+  }
+}

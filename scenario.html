@@ -3,21 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cybersecurity Vishing Quiz</title>
+  <title>Cybersecurity Vishing Training</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <main>
     <h1>Think Before You Trust: The Cybersecurity Challenge</h1>
-    <p>Test your instincts in a voice-based social engineering (vishing) challenge. Get all Level 1 questions right to unlock Level 2!</p>
+    <p>Learn how to spot and stop vishing attacks before they happen.</p>
 
-    <div class="quiz-image-container">
-      <img class="quiz-panel" src="assets/images/intro-split-alex.png" alt="Intro Comic Panel" />
-    </div>
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="quiz.html" class="button start-button">Start the Quiz</a>
+    <div id="training-slide" class="quiz-layout">
+      <div class="quiz-image-container">
+        <img id="training-image" class="quiz-panel" src="assets/images/what-is-vishing.png" alt="Training Slide" />
+      </div>
+      <div class="quiz-content">
+        <div id="training-text">
+          <h2>What is Vishing?</h2>
+          <p>Vishing is a form of social engineering where attackers use voice calls to trick people into giving up sensitive information like passwords or account details.</p>
+        </div>
+        <button id="next-slide" class="button">Next</button>
+      </div>
     </div>
   </main>
+
+  <script>
+    const trainingSlides = [
+      {
+        img: 'assets/images/what-is-vishing.png',
+        title: 'What is Vishing?',
+        text: 'Vishing is a form of social engineering where attackers use voice calls to trick people into giving up sensitive information like passwords or account details.'
+      },
+      {
+        img: 'assets/images/why-it-matters.png',
+        title: 'Why Does It Matter?',
+        text: 'Vishing can lead to data breaches, financial loss, and identity theft. Even one successful call can compromise an entire organization.'
+      },
+      {
+        img: 'assets/images/how-to-protect.png',
+        title: 'How to Protect Yourself',
+        text: 'Never give out credentials over the phone. Always verify through official channels. Report suspicious calls immediately to your IT team.'
+      },
+      {
+        img: 'assets/images/example-scenario.png',
+        title: 'Example Scenario',
+        text: 'An employee receives a call about a system update and is asked to share their password. Instead, they report the call—avoiding a breach thanks to their training.'
+      }
+    ];
+
+    let slideIndex = 0;
+
+    const img = document.getElementById("training-image");
+    const title = document.querySelector("#training-text h2");
+    const text = document.querySelector("#training-text p");
+    const button = document.getElementById("next-slide");
+
+    button.addEventListener("click", () => {
+      slideIndex++;
+      if (slideIndex < trainingSlides.length) {
+        img.src = trainingSlides[slideIndex].img;
+        title.innerText = trainingSlides[slideIndex].title;
+        text.innerText = trainingSlides[slideIndex].text;
+      } else {
+        // Redirect to the quiz when finished
+        window.location.href = "quiz.html";
+      }
+    });
+  </script>
 </body>
 </html>
